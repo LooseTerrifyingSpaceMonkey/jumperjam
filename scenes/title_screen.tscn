@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://dd5ux6sjarkbp"]
+
+[ext_resource type="Texture2D" uid="uid://dt5lcxypan8cl" path="res://assets/textures/ui/BigLogo.png" id="1_7khgv"]
+[ext_resource type="Script" path="res://scripts/base_screen.gd" id="1_qs36s"]
+[ext_resource type="PackedScene" uid="uid://jhbugtrfcicd" path="res://scenes/screen_button.tscn" id="2_qomo2"]
+[ext_resource type="Texture2D" uid="uid://cddoyl8hwucu" path="res://assets/textures/ui/PlayBtn.png" id="3_l3k3b"]
+
+[sub_resource type="Animation" id="Animation_fe50k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterAnchor/TitlePlay:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-101.5, 115)]
+}
+
+[sub_resource type="Animation" id="Animation_d34jl"]
+resource_name = "animation_play_button"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterAnchor/TitlePlay:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-101.5, 115), Vector2(-101.5, 100)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bvcfe"]
+_data = {
+"RESET": SubResource("Animation_fe50k"),
+"animation_play_button": SubResource("Animation_d34jl")
+}
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qs36s")
+screen_fade_duration = 2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bvcfe")
+}
+autoplay = "animation_play_button"
+
+[node name="CenterAnchor" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Logo" type="TextureRect" parent="CenterAnchor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.0
+offset_top = -320.0
+offset_right = 186.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7khgv")
+expand_mode = 1
+
+[node name="TitlePlay" parent="CenterAnchor" instance=ExtResource("2_qomo2")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.5
+offset_top = 115.0
+offset_right = 141.5
+offset_bottom = 355.002
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_l3k3b")
